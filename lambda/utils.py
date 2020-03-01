@@ -1,25 +1,69 @@
-import logging
-import os
-import boto3
-from botocore.exceptions import ClientError
+class BaseSpeech:
+    def __init__(self, speech_text, should_end_session, session_attributes=None, reprompt=None):
+ 
+        """
+        引数:
+            speech_text: Alexaに喋らせたいテキスト
+            should_end_session: このやり取りでスキルを終了させる場合はTrue, 続けるならFalse
+            session_attributes: 引き継ぎたいデータが入った辞書
+            reprompt:
+        """
+        if session_attributes is None:
+            session_attributes = {}
 
+        self._response = {
+            'version': '1.0',
+            'sessionAttributes': session_attributes,
+            'response': {
+                'outputSpeech': {
+                    'type': 'SSML',
+                    'ssml': '<speak>'+speech_text+'</speak>'
+                },
+                'shouldEndSession': should_end_session,
+            },
+        }
 
-def create_presigned_url(object_name):
-    """Generate a presigned URL to share an S3 object with a capped expiration of 60 seconds
+        if reprompt is None:
+           pass
+        else:
+           """リプロンプトを追加する"""
+           self._response['response']['reprompt'] = {
+                'outputSpeech': {
+                    'type': 'SSML',
+                    'ssml': '<speak>'+reprompt+'</speak>'
+                }
+           }
 
-    :param object_name: string
-    :return: Presigned URL as string. If error, returns None.
-    """
-    s3_client = boto3.client('s3', config=boto3.session.Config(signature_version='s3v4',s3={'addressing_style': 'path'}))
-    try:
-        bucket_name = os.environ.get('S3_PERSISTENCE_BUCKET')
-        response = s3_client.generate_presigned_url('get_object',
-                                                    Params={'Bucket': bucket_name,
-                                                            'Key': object_name},
-                                                    ExpiresIn=60*1)
-    except ClientError as e:
-        logging.error(e)
-        return None
+        self.speech_text = speech_text
+        self.should_end_session = should_end_session
+        self.session_attributes = session_attributes
 
-    # The response contains the presigned URL
-    return response
+    def build(self):
+        return self._response
+ 
+ 
+class OneSpeech(BaseSpeech):
+    """1度だけ発話する(ユーザーの返事は待たず、スキル終了)"""
+ 
+    def __init__(self, speech_text, session_attributes=None):
+        super().__init__(speech_text, True, session_attributes)
+ 
+ 
+class QuestionSpeech(BaseSpeech):
+    """発話し、ユーザーの返事を待つ"""
+ 
+    def __init__(self, speech_text, session_attributes=None, reprompt=None):
+        super().__init__(speech_text, False, session_attributes, reprompt)
+
+class DialogDelegate(BaseSpeech):
+
+    def __init__(self, speech_text='', session_attributes=None, reprompt=None):
+        super().__init__(speech_text, False, session_attributes, reprompt)
+
+    def build(self):
+        self._response['response'] = {
+                "directives": [{
+                    "type": "Dialog.Delegate"
+                }]
+            }
+        return self._response
