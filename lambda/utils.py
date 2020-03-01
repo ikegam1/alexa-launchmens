@@ -1,13 +1,13 @@
 class BaseSpeech:
     def __init__(self, speech_text, should_end_session, session_attributes=None, reprompt=None):
- 
         """
-        引数:
-            speech_text: Alexaに喋らせたいテキスト
-            should_end_session: このやり取りでスキルを終了させる場合はTrue, 続けるならFalse
+         引数:
+             speech_text: Alexaに喋らせたいテキスト
+             should_end_session: このやり取りでスキルを終了させる場合はTrue, 続けるならFalse
             session_attributes: 引き継ぎたいデータが入った辞書
             reprompt:
         """
+        
         if session_attributes is None:
             session_attributes = {}
 
@@ -24,15 +24,15 @@ class BaseSpeech:
         }
 
         if reprompt is None:
-           pass
+            pass
         else:
-           """リプロンプトを追加する"""
-           self._response['response']['reprompt'] = {
+            """リプロンプトを追加する"""
+            self._response['response']['reprompt'] = {
                 'outputSpeech': {
                     'type': 'SSML',
                     'ssml': '<speak>'+reprompt+'</speak>'
                 }
-           }
+            }
 
         self.speech_text = speech_text
         self.should_end_session = should_end_session
@@ -40,20 +40,18 @@ class BaseSpeech:
 
     def build(self):
         return self._response
- 
- 
+
 class OneSpeech(BaseSpeech):
     """1度だけ発話する(ユーザーの返事は待たず、スキル終了)"""
- 
+
     def __init__(self, speech_text, session_attributes=None):
         super().__init__(speech_text, True, session_attributes)
- 
- 
+
 class QuestionSpeech(BaseSpeech):
     """発話し、ユーザーの返事を待つ"""
- 
-    def __init__(self, speech_text, session_attributes=None, reprompt=None):
-        super().__init__(speech_text, False, session_attributes, reprompt)
+
+def __init__(self, speech_text, session_attributes=None, reprompt=None):
+    super().__init__(speech_text, False, session_attributes, reprompt)
 
 class DialogDelegate(BaseSpeech):
 
