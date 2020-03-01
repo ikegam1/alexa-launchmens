@@ -7,12 +7,46 @@
         }
       }
     },
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "locales": {
+        "ja-JP": {
+          "privacyPolicyUrl": "http://ikegami.tokyo/2018/11/04/proglang-pp/"
+        }
+      },
+      "allowsPurchases": false,
+      "usesPersonalInfo": false,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "containsAds": false
+    },
     "publishingInformation": {
       "locales": {
-        "en-US": {
-          "name": "LaunchMens"
+        "ja-JP": {
+          "name": "ランチメンズ",
+          "smallIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/b084/097f6ee9ecdf4233ad6b76989b8651b8/APP_ICON?versionId=dfitu2mQPmytxTOiMKzxKpooGAr9.I6h&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200301T065210Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=AKIAJFEYRBGIHK2BBYKA%2F20200301%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=c817f6af57436cc0b7a82a07be0528fd353419d9d512ad67d9911b34305a37dc",
+          "largeIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/a74d/fb1f68f0106c4efdb878dfa55a0b55c0/APP_ICON_LARGE?versionId=j8qd_KLJDaMVVcFZ70Lg.ZEHLqw73WOc&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200301T065210Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAJFEYRBGIHK2BBYKA%2F20200301%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9033d13ce15441b74855730c99cf0626fc9ccd9099c0293b4fa7faee933f650f",
+          "summary": "いくつか質問をしますが、それの回答によってお昼のメニューを提案するスキルです",
+          "description": "全部で3つの質問をします。\nその質問の回答によってその日のランチのメニューを提案します。\nジョークスキルですので深く考えずに遊んでほしいです。\n\n機能はシンプルで、設問があって、回答があって終わりです。\nメニューは全部で9通りあります。あなたの好みのランチに出会えますように。",
+          "examplePhrases": [
+            "アレクサ、ランチメンズを開いて",
+            "はい",
+            "いいよ"
+          ],
+          "keywords": [
+            "クイズ",
+            "ランチ",
+            "お昼",
+            "昼ごはん",
+            "メニュー",
+            "外食"
+          ]
         }
-      }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "動作はシンプルです\n\n1. QuizIntent: はい or いいえ\n1-1. 1から3で回答\n1-2. 1から3で回答\n1-3. 1から3で回答\n\n2. 回答\n3.終了",
+      "category": "GAMES",
+      "distributionCountries": []
     }
   }
 }

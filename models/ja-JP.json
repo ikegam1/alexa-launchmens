@@ -1,0 +1,191 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "ランチメンズ",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "QuestionIntent",
+          "slots": [
+            {
+              "name": "firstSlot",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "{firstSlot}"
+              ]
+            },
+            {
+              "name": "secondSlot",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "{secondSlot}"
+              ]
+            },
+            {
+              "name": "thirdSlot",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "{thirdSlot}"
+              ]
+            },
+            {
+              "name": "skillnameSlot",
+              "type": "skillname"
+            }
+          ],
+          "samples": [
+            "良いよ",
+            "いいよ",
+            "okay",
+            "オーケー",
+            "ok",
+            "start",
+            "スタート",
+            "Yeah",
+            "Hi",
+            "はーい",
+            "やるよ",
+            "もちろん",
+            "やって",
+            "うん",
+            "yes",
+            "はい",
+            "始めて",
+            "はじめて",
+            "始める",
+            "はじめる",
+            "やる",
+            "やります",
+            "クイズ",
+            "問題",
+            "{skillnameSlot} につないで",
+            "{skillnameSlot} に繋いで",
+            "{skillnameSlot} はじめる",
+            "{skillnameSlot} をはじめる",
+            "{skillnameSlot} を開いて",
+            "{firstSlot} で  {secondSlot} で {thirdSlot}"
+          ]
+        },
+        {
+          "name": "AMAZON.NoIntent",
+          "samples": []
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "ランチメンズ"
+              }
+            },
+            {
+              "name": {
+                "value": "ランチmen's"
+              }
+            },
+            {
+              "name": {
+                "value": "ランチ麺"
+              }
+            },
+            {
+              "name": {
+                "value": "ランチめ"
+              }
+            }
+          ],
+          "name": "skillname"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "QuestionIntent",
+          "confirmationRequired": false,
+          "slots": [
+            {
+              "name": "firstSlot",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.first"
+              }
+            },
+            {
+              "name": "secondSlot",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.second"
+              }
+            },
+            {
+              "name": "thirdSlot",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.third"
+              }
+            },
+            {
+              "name": "skillnameSlot",
+              "type": "skillname",
+              "elicitationRequired": false,
+              "confirmationRequired": false
+            }
+          ]
+        }
+      ]
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.first",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "では一問目っっ。「今日もまた仕事かぁ。」今日も今日とて憂鬱な気持ちで出勤です。オフィスに入ると小言がうるさい上司と目が合いました。何て挨拶しましょうか。。。1「ナマステ」、2「ニーハオ」、3「パンにハム挟むニダ」。1から3で答えてね。"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.second",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "では二問目っっ。「さて、今日も1日頑張ろうっ！」意気揚々とネットサーフィンに勤しみます。そういえば、昨日のスポーツの結果を調べないと。何のスポーツでしたっけ？。。。1「マラソン」、2「ラグビー」、3「相撲」。1から3で答えてね。"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.third",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "では三問目っっ。「もうすぐお昼かー。何もしてないけどお腹空いたなぁ。」最後の質問です。休みの日はどんな事をされてますか？1「筋トレ」、2「ゴミ拾い」、3「仕事」。1から3から、一番近いものを選んでね。"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "1"
+}
